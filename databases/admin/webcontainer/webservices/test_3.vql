@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE test_3;
+
+DEPLOY WEBSERVICE test_3 LOGIN = '${databases.admin.webcontainer.webservices.test_3.LOGIN}' PASSWORD = '${databases.admin.webcontainer.webservices.test_3.PASSWORD}' ${databases.admin.webcontainer.webservices.test_3.PASSWORD.ENCRYPTED};
+

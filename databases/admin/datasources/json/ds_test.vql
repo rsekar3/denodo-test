@@ -1,0 +1,15 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_test
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' POST '${databases.admin.datasources.json.ds_test.ROUTE.HTTP.URL}'
+    POSTBODY '\{{
+    "name": "@{{name}}"
+  , "code": "@{{code}}"
+\}}
+
+'
+    MIME 'application/json'
+    AUTHENTICATION BASIC ( 
+      USER '${databases.admin.datasources.json.ds_test.ROUTE.HTTP.USER}'
+      PASSWORD '${databases.admin.datasources.json.ds_test.ROUTE.HTTP.PASSWORD}' ${databases.admin.datasources.json.ds_test.ROUTE.HTTP.PASSWORD.ENCRYPTED} )
+    PROXY OFF;
+

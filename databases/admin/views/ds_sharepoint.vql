@@ -1,0 +1,220 @@
+﻿CREATE OR REPLACE WRAPPER XML ds_sharepoint
+    DATASOURCENAME=ds_sharepoint
+    TUPLEROOT 'feed'
+    OUTPUTSCHEMA (feed = 'feed' : REGISTER OF (
+        xmlbase_0 = '#xml:base' : 'java.lang.String',
+        title = 'title' : REGISTER OF (
+            type = '#type' : 'java.lang.String',
+            title = 'title' : 'java.lang.String'
+        ),
+        id = 'id' : 'java.lang.String',
+        updated = 'updated' : 'java.lang.String',
+        link = 'link' : REGISTER OF (
+            rel = '#rel' : 'java.lang.String',
+            title = '#title' : 'java.lang.String',
+            href = '#href' : 'java.lang.String'
+        ),
+        entry = 'entry' : REGISTER OF (
+            metag_0 = '#m:etag' : 'java.lang.String',
+            id = 'id' : 'java.lang.String',
+            title = 'title' : REGISTER OF (
+                type = '#type' : 'java.lang.String'
+            ),
+            updated = 'updated' : 'java.lang.String',
+            link = 'link' : ARRAY OF (
+                link = 'link' : REGISTER OF (
+                    metag_0 = '#m:etag' : 'java.lang.String',
+                    rel = '#rel' : 'java.lang.String',
+                    title = '#title' : 'java.lang.String',
+                    href = '#href' : 'java.lang.String',
+                    type = '#type' : 'java.lang.String'
+                )
+            ),
+            category = 'category' : REGISTER OF (
+                term = '#term' : 'java.lang.String',
+                scheme = '#scheme' : 'java.lang.String'
+            ),
+            content = 'content' : REGISTER OF (
+                type = '#type' : 'java.lang.String',
+                src = '#src' : 'java.lang.String'
+            ),
+            mproperties_0 = 'm:properties' : REGISTER OF (
+                dcontenttypeid_0 = 'd:ContentTypeID' : 'java.lang.String',
+                dname_0 = 'd:Name' : 'java.lang.String',
+                dcomplianceassetid_0 = 'd:ComplianceAssetId' : REGISTER OF (
+                    mnull_0 = '#m:null' : 'java.lang.Boolean'
+                ),
+                dtitle_0 = 'd:Title' : REGISTER OF (
+                    mnull_0 = '#m:null' : 'java.lang.Boolean'
+                ),
+                did_0 = 'd:Id' : REGISTER OF (
+                    mtype_0 = '#m:type' : 'java.lang.String',
+                    did_0 = 'd:Id' : 'java.lang.Short'
+                ),
+                dcontenttype_0 = 'd:ContentType' : 'java.lang.String',
+                dcreated_0 = 'd:Created' : REGISTER OF (
+                    mtype_0 = '#m:type' : 'java.lang.String',
+                    dcreated_0 = 'd:Created' : 'java.lang.String'
+                ),
+                dcreatedbyid_0 = 'd:CreatedById' : REGISTER OF (
+                    mtype_0 = '#m:type' : 'java.lang.String',
+                    dcreatedbyid_0 = 'd:CreatedById' : 'java.lang.Short'
+                ),
+                dmodified_0 = 'd:Modified' : REGISTER OF (
+                    mtype_0 = '#m:type' : 'java.lang.String',
+                    dmodified_0 = 'd:Modified' : 'java.lang.String'
+                ),
+                dmodifiedbyid_0 = 'd:ModifiedById' : REGISTER OF (
+                    mtype_0 = '#m:type' : 'java.lang.String',
+                    dmodifiedbyid_0 = 'd:ModifiedById' : 'java.lang.Short'
+                ),
+                dcopysource_0 = 'd:CopySource' : REGISTER OF (
+                    mnull_0 = '#m:null' : 'java.lang.Boolean'
+                ),
+                dapprovalstatus_0 = 'd:ApprovalStatus' : 'java.lang.Short',
+                dpath_0 = 'd:Path' : 'java.lang.String',
+                dcheckedouttoid_0 = 'd:CheckedOutToId' : REGISTER OF (
+                    mtype_0 = '#m:type' : 'java.lang.String',
+                    mnull_0 = '#m:null' : 'java.lang.Boolean'
+                ),
+                dvirusstatus_0 = 'd:VirusStatus' : 'java.lang.Short',
+                discurrentversion_0 = 'd:IsCurrentVersion' : REGISTER OF (
+                    mtype_0 = '#m:type' : 'java.lang.String',
+                    discurrentversion_0 = 'd:IsCurrentVersion' : 'java.lang.Boolean'
+                ),
+                dowshiddenversion_0 = 'd:Owshiddenversion' : REGISTER OF (
+                    mtype_0 = '#m:type' : 'java.lang.String',
+                    dowshiddenversion_0 = 'd:Owshiddenversion' : 'java.lang.Short'
+                ),
+                dversion_0 = 'd:Version' : 'java.lang.Float'
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE ds_sharepoint_title AS REGISTER OF (type:text, title:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_link AS REGISTER OF (rel:text, title:text, href:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_title AS REGISTER OF (type:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_link_link AS REGISTER OF (metag_0:text, rel:text, title:text, href:text, type:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_link AS ARRAY OF ds_sharepoint_entry_link_link;
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_category AS REGISTER OF (term:text, scheme:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_content AS REGISTER OF (type:text, src:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_dcomplianceassetid_0 AS REGISTER OF (mnull_0:boolean);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_dtitle_0 AS REGISTER OF (mnull_0:boolean);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_did_0 AS REGISTER OF (mtype_0:text, did_0:int);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_dcreated_0 AS REGISTER OF (mtype_0:text, dcreated_0:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_dcreatedbyid_0 AS REGISTER OF (mtype_0:text, dcreatedbyid_0:int);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_dmodified_0 AS REGISTER OF (mtype_0:text, dmodified_0:text);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_dmodifiedbyid_0 AS REGISTER OF (mtype_0:text, dmodifiedbyid_0:int);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_dcopysource_0 AS REGISTER OF (mnull_0:boolean);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_dcheckedouttoid_0 AS REGISTER OF (mtype_0:text, mnull_0:boolean);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_discurrentversion_0 AS REGISTER OF (mtype_0:text, discurrentversion_0:boolean);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0_dowshiddenversion_0 AS REGISTER OF (mtype_0:text, dowshiddenversion_0:int);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry_mproperties_0 AS REGISTER OF (dcontenttypeid_0:text, dname_0:text, dcomplianceassetid_0:ds_sharepoint_entry_mproperties_0_dcomplianceassetid_0, dtitle_0:ds_sharepoint_entry_mproperties_0_dtitle_0, did_0:ds_sharepoint_entry_mproperties_0_did_0, dcontenttype_0:text, dcreated_0:ds_sharepoint_entry_mproperties_0_dcreated_0, dcreatedbyid_0:ds_sharepoint_entry_mproperties_0_dcreatedbyid_0, dmodified_0:ds_sharepoint_entry_mproperties_0_dmodified_0, dmodifiedbyid_0:ds_sharepoint_entry_mproperties_0_dmodifiedbyid_0, dcopysource_0:ds_sharepoint_entry_mproperties_0_dcopysource_0, dapprovalstatus_0:int, dpath_0:text, dcheckedouttoid_0:ds_sharepoint_entry_mproperties_0_dcheckedouttoid_0, dvirusstatus_0:int, discurrentversion_0:ds_sharepoint_entry_mproperties_0_discurrentversion_0, dowshiddenversion_0:ds_sharepoint_entry_mproperties_0_dowshiddenversion_0, dversion_0:float);
+
+CREATE OR REPLACE TYPE ds_sharepoint_entry AS REGISTER OF (metag_0:text, id:text, title:ds_sharepoint_entry_title, updated:text, link:ds_sharepoint_entry_link, category:ds_sharepoint_entry_category, content:ds_sharepoint_entry_content, mproperties_0:ds_sharepoint_entry_mproperties_0);
+
+CREATE OR REPLACE TABLE ds_sharepoint I18N us_pst (
+        xmlbase_0:text, 
+        title:ds_sharepoint_title, 
+        id:text, 
+        updated:text, 
+        link:ds_sharepoint_link, 
+        entry:ds_sharepoint_entry
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_sharepoint(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD xmlbase_0 NOS ZERO ()
+             ADD title NOS ZERO ()
+             ADD title.type NOS ZERO ()
+             ADD title.title NOS ZERO ()
+             ADD id NOS ZERO ()
+             ADD updated NOS ZERO ()
+             ADD link NOS ZERO ()
+             ADD link.rel NOS ZERO ()
+             ADD link.title NOS ZERO ()
+             ADD link.href NOS ZERO ()
+             ADD entry NOS ZERO ()
+             ADD entry.metag_0 NOS ZERO ()
+             ADD entry.id NOS ZERO ()
+             ADD entry.title NOS ZERO ()
+             ADD entry.title.type NOS ZERO ()
+             ADD entry.updated NOS ZERO ()
+             ADD entry.link NOS ZERO ()
+             ADD entry.link NOS ZERO ()
+             ADD entry.link.metag_0 NOS ZERO ()
+             ADD entry.link.rel NOS ZERO ()
+             ADD entry.link.title NOS ZERO ()
+             ADD entry.link.href NOS ZERO ()
+             ADD entry.link.type NOS ZERO ()
+             ADD entry.category NOS ZERO ()
+             ADD entry.category.term NOS ZERO ()
+             ADD entry.category.scheme NOS ZERO ()
+             ADD entry.content NOS ZERO ()
+             ADD entry.content.type NOS ZERO ()
+             ADD entry.content.src NOS ZERO ()
+             ADD entry.mproperties_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcontenttypeid_0 NOS ZERO ()
+             ADD entry.mproperties_0.dname_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcomplianceassetid_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcomplianceassetid_0.mnull_0 NOS ZERO ()
+             ADD entry.mproperties_0.dtitle_0 NOS ZERO ()
+             ADD entry.mproperties_0.dtitle_0.mnull_0 NOS ZERO ()
+             ADD entry.mproperties_0.did_0 NOS ZERO ()
+             ADD entry.mproperties_0.did_0.mtype_0 NOS ZERO ()
+             ADD entry.mproperties_0.did_0.did_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcontenttype_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcreated_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcreated_0.mtype_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcreated_0.dcreated_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcreatedbyid_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcreatedbyid_0.mtype_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcreatedbyid_0.dcreatedbyid_0 NOS ZERO ()
+             ADD entry.mproperties_0.dmodified_0 NOS ZERO ()
+             ADD entry.mproperties_0.dmodified_0.mtype_0 NOS ZERO ()
+             ADD entry.mproperties_0.dmodified_0.dmodified_0 NOS ZERO ()
+             ADD entry.mproperties_0.dmodifiedbyid_0 NOS ZERO ()
+             ADD entry.mproperties_0.dmodifiedbyid_0.mtype_0 NOS ZERO ()
+             ADD entry.mproperties_0.dmodifiedbyid_0.dmodifiedbyid_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcopysource_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcopysource_0.mnull_0 NOS ZERO ()
+             ADD entry.mproperties_0.dapprovalstatus_0 NOS ZERO ()
+             ADD entry.mproperties_0.dpath_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcheckedouttoid_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcheckedouttoid_0.mtype_0 NOS ZERO ()
+             ADD entry.mproperties_0.dcheckedouttoid_0.mnull_0 NOS ZERO ()
+             ADD entry.mproperties_0.dvirusstatus_0 NOS ZERO ()
+             ADD entry.mproperties_0.discurrentversion_0 NOS ZERO ()
+             ADD entry.mproperties_0.discurrentversion_0.mtype_0 NOS ZERO ()
+             ADD entry.mproperties_0.discurrentversion_0.discurrentversion_0 NOS ZERO ()
+             ADD entry.mproperties_0.dowshiddenversion_0 NOS ZERO ()
+             ADD entry.mproperties_0.dowshiddenversion_0.mtype_0 NOS ZERO ()
+             ADD entry.mproperties_0.dowshiddenversion_0.dowshiddenversion_0 NOS ZERO ()
+             ADD entry.mproperties_0.dversion_0 NOS ZERO ()
+        )
+        OUTPUTLIST (entry, id, link, title, updated, xmlbase_0
+        )
+        WRAPPER (xml ds_sharepoint)
+    );
+

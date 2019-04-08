@@ -1,0 +1,13 @@
+﻿CREATE OR REPLACE TABLE check_src_col_in_where_join I18N us_est (
+        expression:text (sourcetypedecimals = '0', sourcetypesize = '65536', sourcetypeid = '12'), 
+        database_name:text (sourcetypedecimals = '0', sourcetypesize = '65536', sourcetypeid = '12'), 
+        databasename:text (sourcetypedecimals = '0', defaultvalue = 'vdb_datahub_regrpt', sourcetypesize = '65536', sourcetypeid = '12'), 
+        logic_applied_on_view:text (sourcetypedecimals = '0', sourcetypesize = '65536', sourcetypeid = '12'), 
+        src_fld_usd_to_pop_column:text (sourcetypedecimals = '0', sourcetypesize = '65536', sourcetypeid = '12'), 
+        interfacecolumnname:text (sourcetypedecimals = '0', sourcetypesize = '65536', sourcetypeid = '12'), 
+        interface_columnname:text (defaultvalue = 'ou_cd')
+    )
+    FOLDER = '/baseviews'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT;
+

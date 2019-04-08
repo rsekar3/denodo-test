@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW test AS SELECT 'abcd' FROM dual();
+

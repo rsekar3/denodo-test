@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_country AS SELECT country.name AS name, country.code AS code, base64decode(country.name) AS encrypted, param1 FROM country WHERE param1 = code USING PARAMETERS ( param1 : text '');
+
+ALTER VIEW p_country
+ LAYOUT (country = [20, 20, 200, 66]);
+

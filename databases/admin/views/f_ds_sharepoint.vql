@@ -1,0 +1,7 @@
+﻿CREATE OR REPLACE VIEW f_ds_sharepoint AS
+
+SELECT id AS id2 FROM FLATTEN ds_sharepoint AS v ( v.entry.link) CONTEXT ('formatted' = 'yes');
+
+ALTER VIEW f_ds_sharepoint
+ LAYOUT (ds_sharepoint = [20, 20, 369, 429]);
+
